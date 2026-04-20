@@ -33,7 +33,7 @@ export function BadExample() {
   const [popups, setPopups] = useState([true, true, true]);
   const [bgFlash, setBgFlash] = useState(0);
   const [showSecondPopup, setShowSecondPopup] = useState(false);
-  const [cursorTrail, setCursorTrail] = useState<{ x: number; y: number }[]>([]);
+  //const [cursorTrail, setCursorTrail] = useState<{ x: number; y: number }[]>([]);
   const [cart, setCart] = useState<BadCartItem[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
   const [orders, setOrders] = useState<{ id: string; total: number; items: BadCartItem[] }[]>([]);
@@ -53,13 +53,13 @@ export function BadExample() {
     }
   }, [popups]);
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      setCursorTrail((prev) => [...prev.slice(-8), { x: e.clientX, y: e.clientY }]);
-    };
-    window.addEventListener("mousemove", handler);
-    return () => window.removeEventListener("mousemove", handler);
-  }, []);
+  // useEffect(() => {
+  //   const handler = (e: MouseEvent) => {
+  //     setCursorTrail((prev) => [...prev.slice(-8), { x: e.clientX, y: e.clientY }]);
+  //   };
+  //   window.addEventListener("mousemove", handler);
+  //   return () => window.removeEventListener("mousemove", handler);
+  // }, []);
 
   const addToCart = (id: number) => {
     setCart((prev) => {
@@ -77,9 +77,9 @@ export function BadExample() {
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ background: `linear-gradient(135deg, ${flashColors[bgFlash]}, ${flashColors[(bgFlash + 3) % flashColors.length]})`, transition: "background 0.3s" }}>
       {/* Cursor trail */}
-      {cursorTrail.map((pos, i) => (
+      {/* {cursorTrail.map((pos, i) => (
         <div key={i} className="fixed pointer-events-none z-[100] rounded-full" style={{ left: pos.x - 8, top: pos.y - 8, width: 16 + i * 3, height: 16 + i * 3, background: flashColors[(bgFlash + i) % flashColors.length], opacity: 0.6 - i * 0.05 }} />
-      ))}
+      ))} */}
 
       {/* Flashing border strips */}
       <div className="fixed top-0 left-0 right-0 h-2 z-40 animate-pulse" style={{ background: `repeating-linear-gradient(90deg, #ff0000, #ffff00 20px, #00ff00 40px, #0000ff 60px, #ff00ff 80px)` }} />
